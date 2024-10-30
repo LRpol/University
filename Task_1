@@ -1,0 +1,63 @@
+using System.Diagnostics;
+using System;
+using System.Security.Principal;
+using System.Runtime.CompilerServices;
+using System.Reflection.Metadata.Ecma335;
+using Microsoft.VisualBasic;
+using System.Drawing;
+using System.Globalization;
+using System.Runtime.ConstrainedExecution;
+using System.Net.Security;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Diagnostics.Metrics;
+using Newtonsoft.Json;
+
+namespace workingzaeb
+{
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите слово: ");
+        string word = Console.ReadLine();
+        string result = ProcessWord(word);
+
+        Console.WriteLine($"Остался символ: {result}");
+    }
+
+    static string ProcessWord(string word)
+    {
+        while (word.Length > 1)
+        {
+            // Уничтожаем каждый второй символ
+            word = RemoveEverySecondChar(word);
+            // Переворачиваем строку
+            word = ReverseString(word);
+        }
+        return word;
+    }
+
+    static string RemoveEverySecondChar(string input)
+    {
+        char[] result = new char[input.Length / 2 + input.Length % 2];
+        int index = 0;
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (i % 2 == 0) // Убираем каждый второй символ
+            {
+                result[index++] = input[i];
+            }
+        }
+        return new string(result);
+    }
+
+    static string ReverseString(string input)
+    {
+        char[] array = input.ToCharArray();
+        Array.Reverse(array);
+        return new string(array);
+    }
+    
+}
+}
